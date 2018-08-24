@@ -8,7 +8,10 @@
     </tr>
   </thead>
   <tbody>
+  
     <% @products.each do |product| %>
+     
+     <% if product.quantity != '0' %>
     <tr>
     <% begin %>
       <td><%= image_tag(product.img_file) %></td>
@@ -16,13 +19,17 @@
       <td>No Photo</td>
     <% end %>
       <td><%= product.item %></td>
-      <% if product.condition != "very good" then %>
-      <td><%= product.price%> sale price:<%= @sale %></td>
-      <% else %>
+      <% if product.condition == "very good" then %>
       <td><%= product.price%></td>
+      <% elsif product.condition == "good" then %>
+      <td>sale price: $<%= (product.price.to_i * 0.9).to_i %></td>
+      <% else %>
+      <td>sale price: $<%= (product.price.to_i * 0.8).to_i %></td>
       <% end %>
       <td><%= link_to "View Details", "/products/#{product.pid}/" %></td>
     </tr>
+   <% end %>
     <% end %>
+    
   </tbody>
 </table>

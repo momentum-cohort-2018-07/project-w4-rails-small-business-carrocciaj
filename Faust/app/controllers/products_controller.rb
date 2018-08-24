@@ -2,8 +2,10 @@ require 'csv'
 class ProductsController < ApplicationController
 
   def list
+    quantity
     get_data
-   
+    
+    
   end
 
   def detail
@@ -14,12 +16,26 @@ class ProductsController < ApplicationController
 
   def clearance
     get_data
-    
-    @products.map do |product|
+   
+    @products.each do |product|
       if product.condition == "good" then
-        @sale = product.price.to_i * 0.9
+        product.price = product.price.to_i * 0.9
       elsif product.condition == "average" then
-        @sale = product.price.to_i * 0.8
+        product.price = product.price.to_i * 0.8
+      else
+        product.price
+      end
+    end
+  end
+
+  def quantity
+    get_data
+    @zero_qty = false
+    @products.each do |product|
+      if product.quantity == 0 then
+        @zero_qty = true
+      else
+        @zero_qty = false
       end
     end
   end
