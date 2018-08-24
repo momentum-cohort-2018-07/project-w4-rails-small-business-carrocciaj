@@ -1,0 +1,19 @@
+<h1>Here are your Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+    <tr>
+    <td><%= product.pid %></td>
+      <td><%= product.item %></td>
+      <td><%= link_to "View Details", "/products/#{product.pid}/" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
