@@ -10,8 +10,17 @@
   <tbody>
     <% @products.each do |product| %>
     <tr>
-    <td><%= product.pid %></td>
+    <% begin %>
+      <td><%= image_tag(product.img_file) %></td>
+    <% rescue %>
+      <td>No Photo</td>
+    <% end %>
       <td><%= product.item %></td>
+      <% if product.condition != "very good" then %>
+      <td><%= product.price%> sale price:<%= @sale %></td>
+      <% else %>
+      <td><%= product.price%></td>
+      <% end %>
       <td><%= link_to "View Details", "/products/#{product.pid}/" %></td>
     </tr>
     <% end %>

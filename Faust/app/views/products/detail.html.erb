@@ -1,4 +1,4 @@
-<h1></h1>
+<h1><%= @product.item %></h1>
 <table>
   <thead>
     <tr>
@@ -7,11 +7,14 @@
     </tr>
   </thead>
   <tbody>
-    
-    <td><%= @product.pid %></td>
-      <td><%= @product.item %></td>
-      
+    <tr>
+      <td><%= image_tag(@product.img_file) %></td>
     </tr>
-    
+    <tr>
+      <td><%= @product.description %></td>
+      <td><%= @product.item %></td>
+      <td><%= @product.price %></td>   
+    </tr>
   </tbody>
 </table>
+<%= link_to "Back", "/" %>
