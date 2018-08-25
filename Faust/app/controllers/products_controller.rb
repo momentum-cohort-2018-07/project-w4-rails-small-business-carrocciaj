@@ -2,10 +2,7 @@ require 'csv'
 class ProductsController < ApplicationController
 
   def list
-    quantity
-    get_data
-    
-    
+    get_data   
   end
 
   def detail
@@ -19,23 +16,13 @@ class ProductsController < ApplicationController
    
     @products.each do |product|
       if product.condition == "good" then
+       
         product.price = product.price.to_i * 0.9
       elsif product.condition == "average" then
+       
         product.price = product.price.to_i * 0.8
       else
         product.price
-      end
-    end
-  end
-
-  def quantity
-    get_data
-    @zero_qty = false
-    @products.each do |product|
-      if product.quantity == 0 then
-        @zero_qty = true
-      else
-        @zero_qty = false
       end
     end
   end
@@ -56,7 +43,9 @@ class ProductsController < ApplicationController
       product.img_file = row.to_h["img_file"]
       product.quantity = row.to_h["quantity"]
       product.category = row.to_h["category"]
+      if product.quantity.to_i > 0 then
       @products << product
+      end
     end
   end
 end

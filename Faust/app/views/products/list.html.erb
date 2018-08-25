@@ -1,35 +1,32 @@
 <h1>Here are your Products</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Item</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  
-    <% @products.each do |product| %>
+
+
+  <% @products.each do |product| %>
+    <div class="card d-inline-block" style="width: 30%;">
+      <div>
      
-     <% if product.quantity != '0' %>
-    <tr>
-    <% begin %>
-      <td><%= image_tag(product.img_file) %></td>
-    <% rescue %>
-      <td>No Photo</td>
-    <% end %>
-      <td><%= product.item %></td>
-      <% if product.condition == "very good" then %>
-      <td><%= product.price%></td>
-      <% elsif product.condition == "good" then %>
-      <td>sale price: $<%= (product.price.to_i * 0.9).to_i %></td>
-      <% else %>
-      <td>sale price: $<%= (product.price.to_i * 0.8).to_i %></td>
-      <% end %>
-      <td><%= link_to "View Details", "/products/#{product.pid}/" %></td>
-    </tr>
-   <% end %>
-    <% end %>
-    
-  </tbody>
-</table>
+        <% begin %>
+          <%= image_tag(product.img_file, :class => "", :style => "width: 100%") %>
+        <% rescue %>
+          No Photo
+        <% end %>
+      </div>
+      <div>
+          <%= product.item %>
+          <% if product.condition == "very good" then %>
+          <%= product.price %>
+          <% elsif product.condition == "good" then %>
+          sale price: $<%= (product.price.to_i * 0.9).to_i %>
+          <% else %>
+          sale price: $<%= (product.price.to_i * 0.8).to_i %>
+          <% end %>
+          <%= link_to "View Details", "/products/#{product.pid}/" %>
+      
+     
+      
+      </div>
+  </div>
+  <% end %>
+
+ 
