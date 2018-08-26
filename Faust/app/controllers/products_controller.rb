@@ -1,19 +1,15 @@
 require 'csv'
 class ProductsController < ApplicationController
-
-  def list
-    get_data   
+before_action :get_data
+  def list  
+    @products = @products.sort_by(&:category)
   end
 
   def detail
-    get_data
-    
     @product = @products.find {|p| p.pid == params[:id]}
   end
 
   def clearance
-    get_data
-   
     @products.each do |product|
       if product.condition == "good" then
        
