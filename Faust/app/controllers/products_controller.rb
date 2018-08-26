@@ -9,18 +9,8 @@ before_action :get_data
     @product = @products.find {|p| p.pid == params[:id]}
   end
 
-  def clearance
-    @products.each do |product|
-      if product.condition == "good" then
-       
-        product.price = product.price.to_i * 0.9
-      elsif product.condition == "average" then
-       
-        product.price = product.price.to_i * 0.8
-      else
-        product.price
-      end
-    end
+  def table
+    @product = @products.find {|p| "tables" == params[:cid]}
   end
 
   def get_data
