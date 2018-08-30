@@ -1,0 +1,25 @@
+
+<div class="container">
+<div class="card d-inline-block m-1" style="width: 50%;">
+<h1 class="text-center"><%= @product.item %></h1> 
+<div class= "card-body d-block"> 
+      <%= image_tag(@product.img_file, :class => "card-img-top border mb-2") %>
+   
+   
+      <p class="mb-1"><%= @product.description %></p>
+      <p class="m-0">W:<%= @product.dimension_w %> L:<%= @product.dimension_l %> H:<%= @product.dimension_h %></p>
+      <p class="m-0"> 
+      <% if @product.condition == "very good" then %>
+      Price: $<%= @product.price %>
+      <% elsif @product.condition == "good" then %>
+      Price: <s>$<%= @product.price %></s> <span class="text-danger">$<%= (@product.price.to_i * 0.9).to_i %></span>
+      <% else %>
+      :Price <s>$<%= @product.price %></s> <span class="text-danger">$<%= (@product.price.to_i * 0.8).to_i %></span>
+      <% end %>
+      </p>
+   
+ 
+<%= link_to "Back", "/" %>
+</div>
+</div>
+</div>
